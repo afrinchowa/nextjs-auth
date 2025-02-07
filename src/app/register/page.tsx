@@ -20,17 +20,18 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm<UserData>();
 
-const router = useRouter()
+  const router = useRouter();
 
   const onSubmit = async (data: UserData) => {
     // console.log(data);
 
     try {
       const res = await registerUser(data);
-if(res.success){
-  alert(res.message);
-  router.push("/login");
-}    } catch (err: any) {
+      if (res.success) {
+        alert(res.message);
+        router.push("/login");
+      }
+    } catch (err: any) {
       console.error(err.message);
       throw new Error(err.message);
     }
